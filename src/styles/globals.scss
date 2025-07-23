@@ -1,6 +1,20 @@
+@font-face {
+    font-family: Playwrite;
+    src: url('/fonts/Playwrite.ttf');
+}
+
+@font-face {
+    font-family: ZenMaru;
+    src: url('/fonts/ZenMaru.ttf');
+}
+
 html,
 body {
 	margin: 0;
 	width: 100%;
 	height: 100%;
+}
+
+h1 {
+    text-align: center;
 }
