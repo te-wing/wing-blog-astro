@@ -1,8 +1,8 @@
 // src/middleware.ts
-import { defineMiddleware, sequence } from 'astro:middleware';
+import { defineMiddleware, sequence } from 'astro/middleware';
 
 const redirectPagesDev = defineMiddleware(async (context, next) => {
-  const customDomain = 'example.app'; // ここをあなたのカスタムドメインに置き換えてください
+  const customDomain = 'diaries.wing.osaka'; // ここをあなたのカスタムドメインに置き換えてください
   const pagesDevDomainSuffix = '.pages.dev';
 
   // 現在のリクエストのホスト名を取得
