@@ -40,3 +40,14 @@ h1, h2 {
 a, p, h3, h4 {
   font-family: ZenMaru;
 }
+
+a {
+  color: var(--a-default);
+  :hover {
+    color: var(--a-hover);
+  }
+}
+
+p, h2, h3, h4, h5 {
+  color: var(--foreground);
+}

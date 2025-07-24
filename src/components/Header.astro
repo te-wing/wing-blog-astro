@@ -4,7 +4,7 @@ import styles from './header.module.scss';
 
 <>
   <header class={styles.header}>
-    <h1 class={styles.title}>Blog by Wing</h1>
+    <h1 class={styles.mainTitleMini}><a transition:animate=slide href="/" class={styles.titleLink}>Diaries</a> by <a href="https://wing.osaka" target="_blank" class={styles.mainTitleMini}>Wing</a></h1>
     <div class={styles.headerLinkTo}>
       <a class={styles.headerLink} transition:animate=slide href='/'>Home</a>
       <a class={styles.headerLink} transition:animate=slide href='/posts'>Posts</a>
