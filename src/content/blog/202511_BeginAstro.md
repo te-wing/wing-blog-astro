@@ -1,7 +1,7 @@
 ---
 title: 初めてのAstroブログ
 description: なんでAstroでブログ作ったん？
-publishDate: 2025-07-24
+publishDate: '2025-07-24'
 author: Wing
 tags: ["Astro", "ブログ"]
 ---
