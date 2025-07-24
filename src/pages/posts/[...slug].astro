@@ -18,11 +18,13 @@ const { Content } = await post.render();
 
 <Layout title={post.data.title}>
   <article class={styles.article}>
-    <a href='/posts'>
+    <a class={styles.back} href='/posts'>
       <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="currentColor"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
       戻る
-    </a>
-    <img src={post.data.image} alt={post.data.title} class="heroImage" />
+    </a> <br />
+    {post.data.image && (
+      <img src={post.data.image} alt={post.data.title} class="hero-image" />
+    )}
     <h2>{post.data.title}</h2>
     <p class={styles.publishDate}>公開日: {post.data.publishDate.toLocaleDateString()}</p>
     <p class={styles.author}>著者: {post.data.author}</p>
