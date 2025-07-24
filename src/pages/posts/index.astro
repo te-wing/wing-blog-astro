@@ -15,3 +15,11 @@ allBlogPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.ge
     ))}
   </div>
 </Layout>
+
+<style>
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+</style>
