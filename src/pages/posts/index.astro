@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import BlogPostCard from '../../components/BlogPostCard.astro'; // 後で作成します
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import styles from './pages_posts.module.scss';
 
 const allBlogPosts = await getCollection('blog');
 allBlogPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()); // 日付順
@@ -9,17 +10,9 @@ allBlogPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.ge
 
 <Layout>
   <h2>Posts</h2>
-  <div class="posts-grid">
+  <div class={styles.postsGrid}>
     {allBlogPosts.map(post => (
       <BlogPostCard post={post} />
     ))}
   </div>
 </Layout>
-
-<style>
-  .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-</style>
