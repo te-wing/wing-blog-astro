@@ -1,28 +1,24 @@
+// src/middleware.ts
 import { defineMiddleware, sequence } from 'astro:middleware';
 
-const customDomainRedirect = defineMiddleware(async (context, next) => {
-  const customDomain = import.meta.env.PUBLIC_CUSTOM_DOMAIN; // Astroでの環境変数の取得方法
-  const host = context.request.headers.get('host');
+const redirectPagesDev = defineMiddleware(async (context, next) => {
+  const customDomain = 'example.app'; // ここをあなたのカスタムドメインに置き換えてください
+  const pagesDevDomainSuffix = '.pages.dev';
 
-  // .pages.dev でのアクセスであり、かつカスタムドメインが設定されている場合
-  if (host && customDomain && host.endsWith('.pages.dev')) {
-    // カスタムドメインにパスとクエリパラメータを維持してリダイレクト
-    const newUrl = new URL(context.url.pathname, `https://${customDomain}`);
-    newUrl.search = context.url.search;
+  // 現在のリクエストのホスト名を取得
+  const host = context.url.hostname;
 
-    // 301リダイレクト（恒久的な移動）を返す
-    // Responseオブジェクトを直接返すことでリダイレクトが可能
-    return new Response(null, {
-      status: 301,
-      headers: {
-        'Location': newUrl.toString(),
-      },
-    });
+  // ホスト名が *.pages.dev で終わる場合、カスタムドメインにリダイレクトする
+  if (host.endsWith(pagesDevDomainSuffix) && host !== customDomain) {
+    // 完全に同じパスを維持してリダイレクト
+    const newUrl = new URL(context.url);
+    newUrl.hostname = customDomain;
+    // 301 Permanent Redirect (恒久的なリダイレクト) を推奨
+    return context.redirect(newUrl.toString(), 301);
   }
 
-  // それ以外のアクセスはそのまま通す
+  // それ以外の場合は、通常通り処理を進める
   return next();
 });
 
-// 複数のミドルウェアがある場合はsequenceでまとめることができます
-export const onRequest = sequence(customDomainRedirect);
+export const onRequest = sequence(redirectPagesDev);
