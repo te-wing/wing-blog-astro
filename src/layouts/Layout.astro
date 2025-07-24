@@ -17,7 +17,9 @@ import { ClientRouter } from 'astro:transitions';
   <body class={styles.all}>
     <div class={styles.img}>
       <Header />
-      <slot />
+      <div class={styles.slot}>
+        <slot />
+      </div> 
       <Footer />
     </div>
   </body>
