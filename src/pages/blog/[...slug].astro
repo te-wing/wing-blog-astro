@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// 全てのブログ投稿のパス（slug）を生成
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <article>
+    <img src={post.data.image} alt={post.data.title} class="hero-image" />
+    <h1>{post.data.title}</h1>
+    <p class="publish-date">公開日: {post.data.publishDate.toLocaleDateString()}</p>
+    <p class="author">著者: {post.data.author}</p>
+    {post.data.tags && (
+      <div class="tags">
+        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+    )}
+    <hr />
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  .hero-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  .publish-date, .author {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  .tags {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .tag {
+    display: inline-block;
+    background-color: #e0f7fa;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    margin-right: 8px;
+    color: #00796b;
+  }
+  article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+</style>
