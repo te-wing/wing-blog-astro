@@ -11,7 +11,7 @@ const { post } = Astro.props;
 <a href={`/blog/${post.slug}`}>
   <div class={styles.card}>
     {post.data.image && <img src={post.data.image} alt={post.data.title} class={styles.cardImage} />}
-    <h2 class={styles.h2}>{post.data.title}</h2>
+    <h3 class={styles.h2}>{post.data.title}</h3>
     <p class={styles.description}>{post.data.description}</p>
     <p class={styles.date}>{post.data.publishDate.toLocaleDateString()}</p>
     {post.data.tags && (
