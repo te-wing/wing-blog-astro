@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import styles from './articlePage.module.scss';
+
+// 全てのブログ投稿のパス（slug）を生成
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <article class={styles.article}>
+    <a href='/posts'>
+      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="currentColor"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+      戻る
+    </a>
+    <img src={post.data.image} alt={post.data.title} class="heroImage" />
+    <h2>{post.data.title}</h2>
+    <p class={styles.publishDate}>公開日: {post.data.publishDate.toLocaleDateString()}</p>
+    <p class={styles.author}>著者: {post.data.author}</p>
+    {post.data.tags && (
+      <div class={styles.tags}>
+        {post.data.tags.map(tag => <span class={styles.tag}>{tag}</span>)}
+      </div>
+    )}
+    <hr />
+    <Content />
+  </article>
+</Layout>

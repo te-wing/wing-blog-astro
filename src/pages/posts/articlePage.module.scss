@@ -1,0 +1,33 @@
+.heroImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+.publishDate, .author {
+  font-size: 0.9em;
+  color: var(--description-text);
+  margin-bottom: 5px;
+}
+.tags {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.tag {
+  display: inline-block;
+  background-color: #e0f7fa;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  margin-right: 8px;
+  color: #00796b;
+}
+.article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffd90008;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
