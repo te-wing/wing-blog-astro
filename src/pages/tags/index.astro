@@ -15,9 +15,9 @@ const sortedTags = Array.from(uniqueTags).sort(); // タグ名をアルファベ
 
 <Layout title="全てのタグ">
   <article class={styles.tagsIndex}>
-    <h1>全てのタグ</h1>
+    <h2>Tags</h2>
     {sortedTags.length === 0 ? (
-      <p>タグはありません。</p>
+      <p>タグが見つかりませんでした．</p>
     ) : (
       <div class={styles.tagList}>
         {sortedTags.map(tag => (
@@ -27,40 +27,3 @@ const sortedTags = Array.from(uniqueTags).sort(); // タグ名をアルファベ
     )}
   </article>
 </Layout>
-
-<style lang="scss">
-  .tagsIndex {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-
-    h1 {
-      font-size: 2.5em;
-      color: #333;
-      margin-bottom: 25px;
-    }
-  }
-
-  .tagList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .tagLink {
-    display: inline-block;
-    background-color: #e0f7fa;
-    color: #00796b;
-    padding: 8px 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
-
-    &:hover {
-      background-color: #b2ebf2;
-    }
-  }
-</style>
