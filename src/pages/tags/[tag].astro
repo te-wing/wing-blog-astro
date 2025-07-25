@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro'; // 以前作成したコンポーネント
+import styles from './tagPage.module.scss'; // 後ほど作成するスタイルシート
+
+// 動的なパス (getStaticPaths) を生成
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const uniqueTags = new Set<string>();
+
+  // 全ての記事からユニークなタグを抽出
+  allPosts.forEach(post => {
+    post.data.tags?.forEach(tag => uniqueTags.add(tag));
+  });
+
+  // 各タグに対してパスと props を生成
+  return Array.from(uniqueTags).map(tag => {
+    // そのタグに紐づく記事をフィルタリング
+    const filteredPosts = allPosts.filter(post => post.data.tags?.includes(tag));
+    // 日付で降順にソート（新しい投稿が先に来るように）
+    filteredPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+    return {
+      params: { tag: tag }, // URLのパスとして使用されるタグ名
+      props: { posts: filteredPosts, tagName: tag }, // ページに渡すデータ
+    };
+  });
+}
+
+// props を受け取る
+const { posts, tagName } = Astro.props;
+---
+
+<Layout title={`${tagName} の記事一覧`}>
+  <article class={styles.tagPage}>
+    <a class={styles.back} href='/tags'>
+      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="currentColor"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+      タグ一覧に戻る
+    </a>
+    <br />
+
+    <h1>タグ: #{tagName}</h1>
+    {posts.length === 0 ? (
+      <p>このタグの記事はありません。</p>
+    ) : (
+      <div class={styles.postsGrid}>
+        {posts.map(post => (
+          <BlogPostCard post={post} />
+        ))}
+      </div>
+    )}
+  </article>
+</Layout>
+
+<style lang="scss" is:global>
+  // グローバルなスタイルを定義する場合
+
+  .postsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+</style>
