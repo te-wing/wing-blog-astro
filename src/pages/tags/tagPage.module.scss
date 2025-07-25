@@ -1,17 +1,5 @@
 .back {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
   text-decoration: none;
-  margin-bottom: 20px;
-  &:hover {
-    text-decoration: underline;
-  }
-
-  svg {
-    fill: currentColor;
-    margin-right: 5px;
-  }
 }
 
 .postsGrid {

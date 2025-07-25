@@ -10,19 +10,26 @@
   color: var(--description-text);
   margin-bottom: 5px;
 }
-.tags {
-  margin-top: 10px;
-  margin-bottom: 20px;
+.tagList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.tag {
+.tagLink {
   display: inline-block;
-  background-color: #e0f7fa;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.85em;
-  margin-right: 8px;
-  color: #00796b;
-  font-family: ZenMaru;
+  background-color: var(--tag-background);
+  color: var(--tag-foreground);
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--tag-background-hover);
+    border: solid 1px var(--tag-foreground);
+    padding: 7px 14px;
+  }
 }
 .article {
   max-width: 800px;
