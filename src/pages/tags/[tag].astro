@@ -36,13 +36,13 @@ const { posts, tagName } = Astro.props;
   <article class={styles.tagPage}>
     <a class={styles.back} href='/tags'>
       <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="currentColor"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
-      タグ一覧に戻る
+      戻る
     </a>
     <br />
 
-    <h1>タグ: #{tagName}</h1>
+    <h2>Tag: #{tagName}</h2>
     {posts.length === 0 ? (
-      <p>このタグの記事はありません。</p>
+      <p>このタグの記事が見つかりませんでした．</p>
     ) : (
       <div class={styles.postsGrid}>
         {posts.map(post => (
@@ -52,13 +52,3 @@ const { posts, tagName } = Astro.props;
     )}
   </article>
 </Layout>
-
-<style lang="scss" is:global>
-  // グローバルなスタイルを定義する場合
-
-  .postsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-</style>
