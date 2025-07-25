@@ -18,6 +18,8 @@
   --a-hover: #4d56ffa9;
   --button-background: #b8e5ff;
   --button-hover-border: #4d56ffa9;
+  --postcard-background: rgba(198, 234, 255, 0.62);
+  --postcard-border: rgb(198,234,255);
 
   @media (prefers-color-scheme: dark) {
     --background: #000242;
@@ -28,6 +30,8 @@
     --a-default: #ffd6b0e7;
     --a-hover: #ffd52ddc;
     --button-background: #0044ff16;
+    --postcard-background: rgb(2, 0, 117, 32%);
+    --postcard-border: rgb(3, 0, 170);
 }
 }
 
