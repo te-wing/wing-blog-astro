@@ -40,7 +40,7 @@ const { posts, tagName } = Astro.props;
     </a>
     <br />
 
-    <h2>Tag: #{tagName}</h2>
+    <h2 class={styles.h2}>タグ：#{tagName}</h2>
     {posts.length === 0 ? (
       <p>このタグの記事が見つかりませんでした．</p>
     ) : (

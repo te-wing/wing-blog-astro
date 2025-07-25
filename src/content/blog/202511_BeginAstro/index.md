@@ -3,7 +3,7 @@ title: 初めてのAstroブログ
 description: なんでAstroでブログ作ったん？
 publishDate: '2025-07-25'
 author: Wing
-tags: ["Astro", "ブログ"]
+tags: ["ブログ"]
 ---
 
 こんちは（こんばんは？），Wingです．じつはいつの間にか，ブログ用のSSGをHugoからAstroに変えてしまいました．
