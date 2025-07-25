@@ -18,7 +18,7 @@ const { post } = Astro.props;
     </a>
     {post.data.tags && (
       <div class={styles.tags}>
-        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        {post.data.tags.map(tag => <span class={styles.tag}>{tag}</span>)}
       </div>
     )}
   </div>

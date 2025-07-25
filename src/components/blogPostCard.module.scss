@@ -49,15 +49,11 @@
 
 .tags {
   margin-top: 10px;
-  color: var(--sub-text)
 }
 
 .tag {
-  display: inline-block;
-  background-color: #eee;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin-right: 5px;
-  color: #666;
+  font-family: ZenMaru;
+  font-size: 1em;
+  margin: 0 10px;
+  color: var(--sub-text);
 }
