@@ -17,8 +17,8 @@ const { post } = Astro.props;
       <p class={styles.date}>{post.data.publishDate.toLocaleDateString()}</p>
     </a>
     {post.data.tags && (
-      <div class={styles.tags}>
-        {post.data.tags.map(tag => <span class={styles.tag}>{tag}</span>)}
+      <div class={styles.tagList}>
+        {post.data.tags.map(tag => <a href={`/tags/${tag}`} class={styles.tagLink}>{tag}</a>)}
       </div>
     )}
   </div>

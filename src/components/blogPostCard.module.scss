@@ -47,13 +47,25 @@
   margin-top: 10px;
 }
 
-.tags {
-  margin-top: 10px;
+.tagList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.tag {
-  font-family: ZenMaru;
-  font-size: 1em;
-  margin: 0 10px;
-  color: var(--sub-text);
+.tagLink {
+  display: inline-block;
+  background-color: var(--tag-background);
+  color: var(--tag-foreground);
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--tag-background-hover);
+    border: solid 1px var(--tag-foreground);
+    padding: 7px 14px;
+  }
 }
