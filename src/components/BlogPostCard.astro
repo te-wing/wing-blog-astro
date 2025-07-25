@@ -8,17 +8,19 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<a href={`/posts/${post.slug}`}>
+
   <div class={styles.card}>
-    {post.data.image && <img src={post.data.image} alt={post.data.title} class={styles.cardImage} />}
-    <h3 class={styles.h2}>{post.data.title}</h3>
-    <p class={styles.description}>{post.data.description}</p>
-    <p class={styles.date}>{post.data.publishDate.toLocaleDateString()}</p>
+    <a class={styles.cardLink} href={`/posts/${post.slug}`}>
+      {post.data.image && <img src={post.data.image} alt={post.data.title} class={styles.cardImage} />}
+      <h3 class={styles.h2}>{post.data.title}</h3>
+      <p class={styles.description}>{post.data.description}</p>
+      <p class={styles.date}>{post.data.publishDate.toLocaleDateString()}</p>
+    </a>
     {post.data.tags && (
       <div class={styles.tags}>
         {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
       </div>
     )}
   </div>
-</a>
+
 
