@@ -5,17 +5,20 @@
   margin-bottom: 20px;
   border-radius: 8px;
 }
+
 .publishDate, .author {
   font-size: 0.9em;
   color: var(--description-text);
   margin-bottom: 5px;
 }
+
 .tagList {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .tagLink {
   display: inline-block;
   background-color: var(--tag-background);
@@ -31,6 +34,7 @@
     padding: 7px 14px;
   }
 }
+
 .article {
   max-width: 800px;
   margin: 0 auto;
@@ -39,4 +43,8 @@
 
 .back {
   text-decoration: none;
+}
+
+.h2 {
+  font-family: ZenMaru;
 }

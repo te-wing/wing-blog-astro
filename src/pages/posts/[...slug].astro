@@ -25,7 +25,7 @@ const { Content } = await post.render();
     {post.data.image && (
       <img src={post.data.image} alt={post.data.title} class="hero-image" />
     )}
-    <h2>{post.data.title}</h2>
+    <h2 class={styles.h2}>{post.data.title}</h2>
     <p class={styles.publishDate}>公開日: {post.data.publishDate.toLocaleDateString()}</p>
     <p class={styles.author}>著者: {post.data.author}</p>
     {post.data.tags && (
