@@ -9,6 +9,10 @@ allBlogPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.ge
 ---
 
 <Layout>
+  <head>
+    <title>Posts | Diaries by Wing</title>
+    <meta name="description" content="この素晴らしいブログに，Wingが書き込んだ記事を，ぜひご覧ください！" />
+  </head>
   <h2>Posts</h2>
   <div class={styles.postsGrid}>
     {allBlogPosts.map(post => (

@@ -14,6 +14,10 @@ const sortedTags = Array.from(uniqueTags).sort(); // タグ名をアルファベ
 ---
 
 <Layout title="全てのタグ">
+  <head>
+    <title>タグ一覧 | Diaries by Wing</title>
+    <meta name="description" content="タグからブログ記事を検索できます．" />
+  </head>
   <article class={styles.tagsIndex}>
     <h2>Tags</h2>
     {sortedTags.length === 0 ? (
