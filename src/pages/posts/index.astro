@@ -5,9 +5,7 @@ import BlogPostCard from '../../components/BlogPostCard.astro';
 import styles from './pages_posts.module.scss';
 
 const allBlogPosts = await getCollection('blog');
-const publicPosts = allBlogPosts
-  .filter(post => !post.data.draft) // ← ここ追加！
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+allBlogPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()); // 日付順
 ---
 
 <Layout>
