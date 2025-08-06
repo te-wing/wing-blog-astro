@@ -1,9 +1,58 @@
 ---
 import styles from './rightBar.module.scss';
+import { getCollection } from 'astro:content';
+import './rightBar.scss';
+
+const allPosts = await getCollection('blog');
+const uniqueTags = new Set<string>();
+
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => uniqueTags.add(tag));
+});
+
+const sortedTags = Array.from(uniqueTags).sort(); // タグ名をアルファベット順にソート
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+const { posts = [] } = Astro.props;
 ---
 
 <>
   <section class={styles.rightBar}>
-
+    <section class={styles.barSec}>
+      <h4>
+        <a href="/tags">タグから探す</a>
+      </h4>
+      {sortedTags.length === 0 ? (
+        <p>タグが見つかりませんでした．</p>
+      ) : (
+        <div class={styles.acontent}>
+          <ul>
+            {sortedTags.map(tag => (
+              <li>
+                <a href={`/tags/${tag}`}>#{tag}</a><br />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+    <section class={styles.barSec}>
+      <h4>
+        <a href="/posts">最新記事</a>
+      </h4>
+      <div>
+        <ul>
+          {posts.slice(0, 5).map(post => (
+            <li class={styles.item}>
+              <a href={`/posts/${post.slug}`} class={styles.link}>
+                {post.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   </section>
 </>

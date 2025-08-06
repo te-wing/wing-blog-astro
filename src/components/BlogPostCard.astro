@@ -7,8 +7,6 @@ interface Props {
 
 const { post } = Astro.props;
 ---
-
-
   <div class={styles.card}>
     <a class={styles.cardLink} href={`/posts/${post.slug}`}>
       {post.data.image && <img src={post.data.image} alt={post.data.title} class={styles.cardImage} />}
