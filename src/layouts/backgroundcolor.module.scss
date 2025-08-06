@@ -2,8 +2,38 @@
   background-color: var(--background);
 }
 
+.img {
+  width: 100%;
+  padding: 20px;
+}
+
 .slot {
   max-width: 1200px;
   margin: 58px auto 0;
+
+  display: flex;
+  flex-direction: row;
+
+
 }
 
+.slotBlock, .slotBlockRight {
+  display: block;
+}
+
+.slotBlockRight {
+  width: 350px;
+}
+
+.slotBlock {
+  width: 100%;
+}
+
+@media (max-width: 730px) {
+  .slot {
+    display: block;
+  }
+  .slotBlock, .slotBlockRight {
+    width: 100%;
+  }
+}
