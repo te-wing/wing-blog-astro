@@ -96,7 +96,7 @@ const { posts = [] } = Astro.props;
     // フォームからデータを取得
     const formData = new FormData(form);
     const data = {
-      host: window.location.host, // ユーザーが見ているページのホスト名
+      host: "diaries.wing.osaka", // ユーザーが見ているページのホスト名
       username: formData.get('username') || undefined,
       email: formData.get('email') || undefined,
       rate: parseInt(formData.get('rate'), 10),
