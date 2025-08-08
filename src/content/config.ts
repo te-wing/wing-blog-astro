@@ -10,6 +10,7 @@ const blogCollection = defineCollection({
     tags: z.array(z.string()).optional(), // オプショナルな配列
     image: z.string().optional(), // オプショナルな画像パス
     draft: z.boolean().default(false),
+    projects: z.array(z.string()).optional(),
   }),
 });
 

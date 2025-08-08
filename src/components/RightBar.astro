@@ -5,16 +5,16 @@ import './rightBar.scss';
 
 const allPosts = await getCollection('blog');
 const uniqueTags = new Set<string>();
+const uniqueProjects = new Set<string>();
 
 allPosts.forEach(post => {
   post.data.tags?.forEach(tag => uniqueTags.add(tag));
+  post.data.projects?.forEach(project => uniqueProjects.add(project));
 });
 
 const sortedTags = Array.from(uniqueTags).sort(); // タグ名をアルファベット順にソート
+const sortedProjects = Array.from(uniqueProjects).sort();
 
-interface Props {
-  posts: CollectionEntry<'blog'>[];
-}
 const { posts = [] } = Astro.props;
 ---
 
@@ -32,6 +32,24 @@ const { posts = [] } = Astro.props;
             {sortedTags.map(tag => (
               <li>
                 <a href={`/tags/${tag}`}>#{tag}</a><br />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+    <section>
+      <h4>
+        <a>プロジェクト</a>
+      </h4>
+      {sortedProjects.length === 0 ? (
+        <p>プロジェクトが見つかりませんでした．</p>
+      ) : (
+        <div>
+          <ul>
+            {sortedProjects.map(project => (
+              <li>
+                <a href=`/projects/${project}`>{project}</a><br />
               </li>
             ))}
           </ul>
