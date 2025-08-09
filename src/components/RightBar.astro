@@ -99,7 +99,9 @@ const { posts = [] } = Astro.props;
         <textarea id="comment" name="comment"></textarea><br/><br/>
 
         <div class="cf-turnstile" data-sitekey="0x4AAAAAABpyNGg6V96WphRE"></div>
-        
+
+        <input type="hidden" name="host" value={Astro.url.host} />
+
         <button type="submit">送信</button>
       </form>
     </section>
