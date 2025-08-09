@@ -19,6 +19,11 @@ const { post } = Astro.props;
         {post.data.tags.map(tag => <a href={`/tags/${tag}`} class={styles.tagLink}>#{tag}</a>)}
       </div>
     )}
+    {post.data.projects && (
+      <div class="styles.projectList">
+        {post.data.projects.map(project => <a href={`/proj/${project}`} class={styles.projectLink}>{project}</a>)}
+      </div>
+    )}
   </div>
 
 
