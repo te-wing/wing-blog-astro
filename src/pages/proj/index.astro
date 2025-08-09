@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import Layout from '../../layouts/Layout.astro';
+import styles from './projIndex.module.scss';
+
+const allPosts = await getCollection('blog');
+const uniqueProjects = new Set<string>();
+
+allPosts.forEach(post => {
+  post.data.projects?.forEach(project => uniqueProjects.add(project));
+})
+
+const sortedProjects = Array.from(uniqueProjects).sort();
+---
+
+<Layout>
+  <head>
+    <title>プロジェクト一覧 | Diaries by Wing</title>
+    <meta name="description" content="プロジェクトからブログ記事を検索できます．" />
+  </head>
+  <article class={styles.tagsIndex}>
+  
+  </article>
+</Layout>
