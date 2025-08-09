@@ -18,7 +18,16 @@ const sortedProjects = Array.from(uniqueProjects).sort();
     <title>プロジェクト一覧 | Diaries by Wing</title>
     <meta name="description" content="プロジェクトからブログ記事を検索できます．" />
   </head>
-  <article class={styles.tagsIndex}>
-  
+  <article class={styles.projectsIndex}>
+    <h2>Projects</h2>
+    {sortedProjects.length === 0 ? (
+      <p>タグが見つかりませんでした．</p>
+    ) : (
+      <div class={styles.projectsList}>
+        {sortedProjects.map(project => (
+          <a href={`/proj/${project}`} class={styles.projectLink}>{project}</a>
+        ))}
+      </div>
+    )}
   </article>
 </Layout>
