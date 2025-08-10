@@ -144,3 +144,5 @@ export default function SearchRedirect() {
 で，このファイルのロジックがどうなってるかざっくり説明すると，`const selectedEngine = searchEngines[randomIndex];`の部分で，検索エンジンをランダムに選択して，さっき説明した方法でいろんな検索エンジンでのURLを生成してる，ということです．<br>
 ちなみに，`import { searchEngines } from '@/data/searchEngines';`の部分で，検索エンジンごとのURLの構文をひたすら並列してあるって言う感じです．<br><br>
 よかったらGitHubリポジトリも見みてください．
+### お知らせ
+[プロジェクト「検索エンジンをシャッフルしよう」](/proj/%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%82%92%E3%82%B7%E3%83%A3%E3%83%83%E3%83%95%E3%83%AB%E3%81%97%E3%82%88%E3%81%86%EF%BC%81)の次の記事で，同じ機能を持つ拡張機能を作る予定です．お楽しみに！
