@@ -109,37 +109,46 @@ const { posts = [] } = Astro.props;
 </>
 
 <script>
-  const form = document.getElementById('survey-form');
-  const workerUrl = 'https://form-workers.wing.osaka';
+  // フォームにイベントリスナーを追加する処理を関数にまとめる
+  function initializeForm() {
+    const form = document.getElementById('survey-form');
+    const workerUrl = 'https://form-workers.wing.osaka';
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault(); // デフォルトのフォーム送信を停止
-
-    // フォームからデータを取得
-    const formData = new FormData(form);
-    
-    // FormDataオブジェクトは、フォームの全フィールド（cf-turnstile-responseを含む）を自動で取得します
-
-    try {
-      // fetch APIでWorkerにPOSTリクエストを送信
-      const response = await fetch(workerUrl, {
-        method: 'POST',
-        // ブラウザが自動でContent-Typeを設定するから，ヘッダーは不要
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert('アンケートの送信に成功しました！');
-        form.reset(); // フォームをリセット
-      } else {
-        alert('エラー：' + (result.error || '不明なエラー'));
-      }
-
-    } catch (error) {
-      console.error('通信エラー：', error);
-      alert('通信中にエラーが発生しました。');
+    // 既存のイベントリスナーを削除する（重複登録を防ぐため）
+    if (form) {
+      // 既存のイベントリスナーがあれば削除
+      form.removeEventListener('submit', handleFormSubmit);
+      // 新しいイベントリスナーを追加
+      form.addEventListener('submit', handleFormSubmit);
     }
-  });
+
+    async function handleFormSubmit(event) {
+      event.preventDefault(); // デフォルトのフォーム送信を停止
+
+      const formData = new FormData(form);
+      
+      try {
+        const response = await fetch(workerUrl, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('アンケートの送信に成功しました！');
+          form.reset(); // フォームをリセット
+        } else {
+          alert('エラー：' + (result.error || '不明なエラー'));
+        }
+      } catch (error) {
+        console.error('通信エラー：', error);
+        alert('通信中にエラーが発生しました。');
+      }
+    }
+  }
+
+  // 最初のページロード時とページ遷移後にフォームを初期化
+  document.addEventListener('DOMContentLoaded', initializeForm);
+  document.addEventListener('astro:after-swap', initializeForm);
 </script>
