@@ -10,5 +10,7 @@ export default defineConfig({
   site: 'https://diaries.wing.osaka',
   output: 'static',
   adapter: cloudflare(),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+  ],
 });
