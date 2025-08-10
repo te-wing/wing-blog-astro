@@ -78,11 +78,11 @@ const { posts = [] } = Astro.props;
     <section class={styles.barSec}>
       <h4>アンケート</h4>
       <form id="survey-form">
-        <label for="username">ニックネーム（任意）：</label>
-        <input type="text" id="username" name="username"><br /><br />
+        <label for="username">お名前（任意）：</label>
+        <input placeholder="ニックネーム可" type="text" id="username" name="username"><br /><br />
 
         <label for="email">メールアドレス（任意）：</label>
-        <input type="email" id="email" name="email"><br /><br />
+        <input placeholder="example@you.wing.osaka" type="email" id="email" name="email"><br /><br />
 
         <label for="rate">サイト評価（必須）：</label>
         <select id="rate" name="rate" required>
@@ -96,7 +96,7 @@ const { posts = [] } = Astro.props;
         <br /><br />
 
         <label for="comment">ご意見・ご感想（任意）：</label>
-        <textarea id="comment" name="comment"></textarea><br/><br/>
+        <textarea placeholder="コメント・お問合せなどを入力してください．" id="comment" name="comment"></textarea><br/><br/>
 
         <div class="cf-turnstile" data-sitekey="0x4AAAAAABpyNGg6V96WphRE"></div>
 
