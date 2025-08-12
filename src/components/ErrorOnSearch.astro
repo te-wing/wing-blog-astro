@@ -1,0 +1,11 @@
+---
+const { message } = Astro.props;
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <head>
+    <title>エラー</title>
+  </head>
+  <h2>エラーが発生しました</h2>
+  <p>{message}</p>
+</Layout>

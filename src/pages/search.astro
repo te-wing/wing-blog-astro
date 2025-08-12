@@ -1,25 +1,38 @@
 ---
-const url = new URL(Astro.request.url);
-const token = url.searchParams.get('token');
-const query = url.searchParams.get('q');
+import ErrorOnSearch from '../components/ErrorOnSearch.astro';
+import Layout from '../layouts/Layout.astro';
 
-const VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+let errorMessage = null;
+let query = null;
 
-const res = await fetch(VERIFY_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  body: new URLSearchParams({
-    secret: import.meta.env.TURNSTILE_SECRET_KEY,
-    response: token,
-    remoteip: Astro.request.headers.get('x-forwarded-for') ?? ''
-  })
-});
+try {
+  const url = new URL(Astro.request.url);
+  const token = url.searchParams.get('token');
+  query = url.searchParams.get('q');
 
-const result = await res.json();
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      secret: import.meta.env.TURNSTILE_SECRET_KEY,
+      response: token,
+      remoteip: Astro.request.headers.get('x-forwarded-for') ?? ''
+    })
+  });
 
-if (!result.success) {
-  throw new Error('無効なTurnstileトークンです');
+  const result = await res.json();
+
+  if (!result.success) {
+    errorMessage = '無効なTurnstileトークンです。';
+  }
+} catch (err) {
+  errorMessage = 'トークン検証中にエラーが発生しました。';
 }
 ---
-<h1>検索結果: {query}</h1>
-<!-- 検索ロジックをここに追加 -->
+{errorMessage ? (
+  <ErrorOnSearch message={errorMessage} />
+) : (
+  <Layout>
+  <h1>🔍 検索結果: {query}</h1>
+  </Layout>
+)}
