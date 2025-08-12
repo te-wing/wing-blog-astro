@@ -3,6 +3,8 @@ import styles from './rightBar.module.scss';
 import { getCollection } from 'astro:content';
 import './rightBar.scss';
 
+
+
 const allPosts = await getCollection('blog');
 const uniqueTags = new Set<string>();
 const uniqueProjects = new Set<string>();
@@ -21,6 +23,7 @@ const { posts = [] } = Astro.props;
 <>
   <section class={styles.rightBar}>
     <section class={styles.barSec}>
+      <SearchBoxOnRight />
       <h4>
         <a href="/tags">タグから探す</a>
       </h4>
@@ -126,7 +129,7 @@ const { posts = [] } = Astro.props;
       if (turnstileContainer && window.turnstile) {
         // 既存のウィジェットをリセットまたは破棄してから新しいウィジェットをレンダリング
         turnstile.render(turnstileContainer, {
-          sitekey: '0x4AAAAAABpyNGg6V96WphRE', // あなたのsitekeyに置き換える
+          sitekey: '0x4AAAAAABpyNGg6V96WphRE',
         });
       }
     }
