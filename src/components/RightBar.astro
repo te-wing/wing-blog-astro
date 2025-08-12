@@ -3,7 +3,7 @@ import styles from './rightBar.module.scss';
 import { getCollection } from 'astro:content';
 import './rightBar.scss';
 
-
+import SearchForm from './SearchForm.jsx';
 
 const allPosts = await getCollection('blog');
 const uniqueTags = new Set<string>();
@@ -23,7 +23,7 @@ const { posts = [] } = Astro.props;
 <>
   <section class={styles.rightBar}>
     <section class={styles.barSec}>
-      <SearchBoxOnRight />
+      <SearchForm client:load />
       <h4>
         <a href="/tags">タグから探す</a>
       </h4>
