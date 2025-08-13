@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import './rightBar.scss';
 
 import SearchForm from './SearchForm.jsx';
+import FormBox from './FormBox';
 
 const allPosts = await getCollection('blog');
 const uniqueTags = new Set<string>();
@@ -79,34 +80,7 @@ const { posts = [] } = Astro.props;
       </div>
     </section>
     <section class={styles.barSec}>
-      <h4>アンケート</h4>
-      <form id="survey-form">
-        <label for="username">お名前（任意）：</label>
-        <input placeholder="ニックネーム可" type="text" id="username" name="username"><br /><br />
-
-        <label for="email">メールアドレス（任意）：</label>
-        <input placeholder="example@you.wing.osaka" type="email" id="email" name="email"><br /><br />
-
-        <label for="rate">サイト評価（必須）：</label>
-        <select id="rate" name="rate" required>
-          <option value="">選択してください</option>
-          <option value="5">5 - とても良い</option>
-          <option value="4">4 - 良い</option>
-          <option value="3">3 - 普通</option>
-          <option value="2">2 - 悪い</option>
-          <option value="1">1 - とても悪い</option>
-        </select>
-        <br /><br />
-
-        <label for="comment">ご意見・ご感想（任意）：</label>
-        <textarea placeholder="コメント・お問合せなどを入力してください．" id="comment" name="comment"></textarea><br/><br/>
-
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAABpyNGg6V96WphRE"></div>
-
-        <input type="hidden" name="host" value={Astro.url.host} />
-
-        <button type="submit">送信</button>
-      </form>
+      <FormBox />
     </section>
   </section>
 </>
