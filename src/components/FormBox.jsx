@@ -1,13 +1,12 @@
 'use client';
 
 import styles from '../styles/formstyles.module.scss';
+import useEffect from 'react';
 
 export default function FormBox() {
 
   return (
     <div className={styles.formBox}>
-      {/* Turnstileスクリプトの読み込み */}
-      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
 
       <h4 className={styles.h4}>アンケート</h4>
       <form className={styles.form} id="survey-form">

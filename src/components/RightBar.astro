@@ -80,73 +80,7 @@ const { posts = [] } = Astro.props;
       </div>
     </section>
     <section class={styles.barSec}>
-      <FormBox />
+      <FormBox client:load />
     </section>
   </section>
 </>
-
-<script>
-  // フォームにイベントリスナーを追加し、Turnstileを初期化する処理を関数にまとめる
-  function initializeForm() {
-    const form = document.getElementById('survey-form');
-    const workerUrl = 'https://form-workers.wing.osaka';
-
-    if (form) {
-      // 既存のイベントリスナーがあれば削除
-      form.removeEventListener('submit', handleFormSubmit);
-      // 新しいイベントリスナーを追加
-      form.addEventListener('submit', handleFormSubmit);
-
-      // Turnstileウィジェットを再レンダリングする
-      // ウィジェットのコンテナ要素を取得
-      const turnstileContainer = form.querySelector('.cf-turnstile');
-      if (turnstileContainer && window.turnstile) {
-        // 既存のウィジェットをリセットまたは破棄してから新しいウィジェットをレンダリング
-        turnstile.render(turnstileContainer, {
-          sitekey: '0x4AAAAAABpyNGg6V96WphRE',
-        });
-      }
-    }
-
-    async function handleFormSubmit(event) {
-      event.preventDefault(); // デフォルトのフォーム送信を停止
-
-      const formData = new FormData(form);
-      
-      try {
-        const response = await fetch(workerUrl, {
-          method: 'POST',
-          body: formData,
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert('アンケートの送信に成功しました！');
-          form.reset(); // フォームをリセット
-          // フォーム送信成功後、Turnstileウィジェットもリセットする
-          if (window.turnstile) {
-            turnstile.reset();
-          }
-        } else {
-          alert('エラー：' + (result.error || '不明なエラー'));
-          // エラー時もTurnstileウィジェットをリセット
-          if (window.turnstile) {
-            turnstile.reset();
-          }
-        }
-      } catch (error) {
-        console.error('通信エラー：', error);
-        alert('通信中にエラーが発生しました。');
-        // 通信エラー時もTurnstileウィジェットをリセット
-        if (window.turnstile) {
-          turnstile.reset();
-        }
-      }
-    }
-  }
-
-  // 最初のページロード時とページ遷移後にフォームとTurnstileを初期化
-  document.addEventListener('DOMContentLoaded', initializeForm);
-  document.addEventListener('astro:after-swap', initializeForm);
-</script>
