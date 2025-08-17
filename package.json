@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.2",
+    "@astrojs/cloudflare": "^12.6.4",
     "@astrojs/react": "^4.3.0",
-    "@astrojs/sitemap": "^3.4.2",
+    "@astrojs/sitemap": "^3.5.0",
     "@types/react": "^19.1.10",
-    "astro": "^5.12.8",
+    "astro": "^5.13.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sass": "^1.89.2",
