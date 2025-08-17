@@ -69,7 +69,7 @@ export default function Turnstile({ sitekey, onVerify }: TurnstileProps) {
 
   return (
     <div ref={containerRef} id="cf-turnstile-container">
-      {!isScriptLoaded && <div>Loading...</div>}
+      {!isScriptLoaded && <div></div>}
     </div>
   );
 }
