@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import Turnstile from './Turnstile';
 
 export default function SearchForm() {
   const [query, setQuery] = useState("");
@@ -29,7 +30,7 @@ export default function SearchForm() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <div className="cf-turnstile" data-sitekey="0x4AAAAAABpyNGg6V96WphRE"></div>
+        <Turnstile sitekey="0x4AAAAAABpyNGg6V96WphRE" client:load />
         <button type="submit">検索</button>
       </form>
     </div>

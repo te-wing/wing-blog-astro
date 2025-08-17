@@ -17,6 +17,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.4.2
         version: 3.4.2
+      '@types/react':
+        specifier: ^19.1.10
+        version: 19.1.10
       astro:
         specifier: ^5.12.8
         version: 5.12.8(@types/node@24.1.0)(rollup@4.45.1)(sass@1.89.2)(typescript@5.8.3)
