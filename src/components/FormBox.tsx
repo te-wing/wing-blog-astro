@@ -23,7 +23,7 @@ export default function FormBox() {
     e.preventDefault();
 
     if (isButtonDisabled) {
-      alert('評価を忘れずに、ロボットでないことを証明してください。');
+      alert('評価を忘れずに．あと，ロボットさんお断り．');
       return;
     }
 

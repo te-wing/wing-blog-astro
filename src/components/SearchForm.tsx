@@ -17,7 +17,7 @@ export default function SearchForm() {
 
     // Turnstileトークンがない場合は送信を中止
     if (!turnstileToken) {
-      alert("ロボットではありませんにチェックを入れてください。");
+      alert("ロボットさんお断り");
       return;
     }
 
@@ -26,7 +26,7 @@ export default function SearchForm() {
       const encodedToken = encodeURIComponent(turnstileToken);
       window.location.href = `/search?q=${encodedQuery}&token=${encodedToken}`;
     } else {
-      alert("検索語を入力してください。");
+      alert("検索語を入力してください．");
     }
   };
 
