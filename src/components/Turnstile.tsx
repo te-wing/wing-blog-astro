@@ -65,7 +65,7 @@ export default function Turnstile({ sitekey, onVerify }: TurnstileProps) {
         widgetIdRef.current = null;
       }
     };
-  }, [isScriptLoaded, sitekey, onVerify]);
+  }, [isScriptLoaded, sitekey]);
 
   return (
     <div ref={containerRef} id="cf-turnstile-container">
