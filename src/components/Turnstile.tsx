@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-// Turnstileのレンダリングに必要なグローバルな型定義
 declare global {
   interface Window {
     turnstile?: {
@@ -15,51 +14,62 @@ declare global {
 
 interface TurnstileProps {
   sitekey: string;
-  // フォーム送信時にトークンを受け取るためのコールバック関数
   onVerify: (token: string) => void;
 }
 
 export default function Turnstile({ sitekey, onVerify }: TurnstileProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !window.turnstile) {
+    // グローバルなturnstileオブジェクトが利用可能かチェック
+    if (window.turnstile) {
+      setIsScriptLoaded(true);
       return;
     }
 
-    // ウィジェットがすでにレンダリングされていたら何もしない
-    if (widgetIdRef.current) {
-      return;
-    }
+    // スクリプトがまだない場合は、動的に追加
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
+    script.onload = () => {
+      setIsScriptLoaded(true);
+    };
+    document.body.appendChild(script);
 
-    // コンポーネントがマウントされた時にTurnstileウィジェットをレンダリング
-    const widgetId = window.turnstile.render(containerRef.current, {
-      sitekey: sitekey,
-      callback: (token: string) => {
-        onVerify(token);
-      },
-      // ユーザーがチャレンジを完了した時に呼び出される
-      'after-interactive-callback': () => {
-        // 例: フォームの送信ボタンを有効にするなど
-      },
-    });
-
-    widgetIdRef.current = widgetId;
-
-    // クリーンアップ関数
     return () => {
-      // コンポーネントがアンマウントされた時にウィジェットを削除
+      // コンポーネントがアンマウントされた時にスクリプトを削除する（任意）
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // スクリプトがロード済みで、コンテナが利用可能になったらレンダリング
+    if (isScriptLoaded && containerRef.current && window.turnstile && !widgetIdRef.current) {
+      const widgetId = window.turnstile.render(containerRef.current, {
+        sitekey: sitekey,
+        callback: (token: string) => {
+          onVerify(token);
+        },
+      });
+      widgetIdRef.current = widgetId;
+    }
+
+    // クリーンアップ
+    return () => {
       if (widgetIdRef.current && window.turnstile) {
         window.turnstile.remove(widgetIdRef.current);
         widgetIdRef.current = null;
       }
     };
-  }, [sitekey, onVerify]); // 依存配列にsitekeyとonVerifyを追加
+  }, [isScriptLoaded, sitekey, onVerify]);
 
   return (
     <div ref={containerRef} id="cf-turnstile-container">
-      {/* Turnstileウィジェットがここにレンダリングされる */}
+      {!isScriptLoaded && <div>Loading...</div>}
     </div>
   );
 }
