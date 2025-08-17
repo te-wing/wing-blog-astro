@@ -5,16 +5,25 @@ import Turnstile from './Turnstile';
 
 export default function SearchForm() {
   const [query, setQuery] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  // Turnstileからトークンを受け取るハンドラ
+  const handleVerify = (token: string) => {
+    setTurnstileToken(token);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const tokenInput = document.querySelector<HTMLInputElement>('input[name="cf-turnstile-response"]');
-    const token = tokenInput?.value || "dummy-token";
+    // Turnstileトークンがない場合は送信を中止
+    if (!turnstileToken) {
+      alert("ロボットではありませんにチェックを入れてください。");
+      return;
+    }
 
     if (query.trim()) {
       const encodedQuery = encodeURIComponent(query.trim());
-      const encodedToken = encodeURIComponent(token);
+      const encodedToken = encodeURIComponent(turnstileToken);
       window.location.href = `/search?q=${encodedQuery}&token=${encodedToken}`;
     } else {
       alert("検索語を入力してください。");
@@ -30,7 +39,8 @@ export default function SearchForm() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <Turnstile sitekey="0x4AAAAAABpyNGg6V96WphRE" client:load />
+        {/* onVerify プロパティを追加して、トークンを受け取る */}
+        <Turnstile sitekey="0x4AAAAAABpyNGg6V96WphRE" onVerify={handleVerify} />
         <button type="submit">検索</button>
       </form>
     </div>

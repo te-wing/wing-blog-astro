@@ -3,7 +3,7 @@ import styles from './rightBar.module.scss';
 import { getCollection } from 'astro:content';
 import './rightBar.scss';
 
-import SearchForm from './SearchForm.jsx';
+import SearchForm from './SearchForm.tsx';
 import FormBox from './FormBox.tsx';
 
 const allPosts = await getCollection('blog');
