@@ -30,7 +30,9 @@ export default function FormBox() {
     // ここでフォームデータを取得
     const form = e.currentTarget;
     const formData = new FormData(form);
-    
+
+    formData.append('host', 'diaries.wing.osaka');
+
     // フォームデータにTurnstileトークンを追加
     formData.append('cf-turnstile-response', turnstileToken as string);
 
