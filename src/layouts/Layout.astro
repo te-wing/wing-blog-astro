@@ -23,17 +23,17 @@ const publishedPosts = allPosts
     <ClientRouter />
   </head>
   <body class={styles.all}>
-    <div class={styles.img}>
-      <Header />
-      <div class={styles.slot}>
-        <div transition:animate=slide class={styles.slotBlock}>
+    <div class={styles.WholeWidth}>
+      <Header class={styles.WholeWidth} />
+      <div class={styles.SlugSection}>
+        <div transition:animate=slide>
           <slot />
         </div>
-        <div class={styles.slotBlockRight}>
-          <RightBar posts={publishedPosts} class={styles.rightBar} />
+        <div>
+          <RightBar posts={publishedPosts} />
         </div>
       </div> 
-      <Footer />
+      <Footer class={styles.WholeWidth} />
     </div>
   </body>
 </html>

@@ -1,40 +1,13 @@
 .all {
   background-color: var(--background);
+  padding: 58px 33px 52px;
+  box-sizing: border-box;
 }
 
-.img {
-  width: 100%;
-  padding: 20px;
-}
-
-.slot {
-  max-width: 1200px;
-  margin: 58px auto 0;
-
-  display: flex;
-  flex-direction: row;
-
-  margin-bottom: 20px;
-}
-
-.slotBlock, .slotBlockRight {
-  display: block;
-}
-
-.slotBlockRight {
-  width: 500px;
-  margin-right: 40px;
-}
-
-.slotBlock {
+.WholeWidth {
   width: 100%;
 }
 
-@media (max-width: 730px) {
-  .slot {
-    display: block;
-  }
-  .slotBlock, .slotBlockRight {
-    width: 100%;
-  }
+.SlugSection {
+  
 }
