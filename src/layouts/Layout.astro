@@ -26,10 +26,10 @@ const publishedPosts = allPosts
     <div class={styles.WholeWidth}>
       <Header class={styles.WholeWidth} />
       <div class={styles.SlugSection}>
-        <div transition:animate=slide>
+        <div class={styles.LeftSlug} transition:animate=slide>
           <slot />
         </div>
-        <div>
+        <div class={styles.RightBarBox}>
           <RightBar posts={publishedPosts} />
         </div>
       </div> 

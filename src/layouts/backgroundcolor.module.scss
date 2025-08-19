@@ -9,5 +9,19 @@
 }
 
 .SlugSection {
-  
+  display: flex;
+
+  @media (max-width: 730px) {
+    display: block;
+  }
+}
+
+.RightBarBox {
+  width: 360px;
+  margin: 7px 6px 53px;
+}
+
+.LeftSlug {
+  width: 100%;
+  margin: 7px 6px 53px;
 }
