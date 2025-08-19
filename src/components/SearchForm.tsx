@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Turnstile from './Turnstile';
+import styles from '../styles/SearchForm.module.scss'
 
 export default function SearchForm() {
   const [query, setQuery] = useState("");
