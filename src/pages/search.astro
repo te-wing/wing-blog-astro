@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import SearchForm from '../components/SearchForm.tsx';
 import SearchResult from '../components/SearchResult.svelte';
+
+const workerUrl = 'https://search.api.diaries.wing.osaka';
 ---
 
 <Layout>
@@ -10,5 +12,5 @@ import SearchResult from '../components/SearchResult.svelte';
   </head>
   <h2>Search</h2>
   <SearchForm client:load />
-  <SearchResult client:load />
+  <SearchResult workerUrl={workerUrl} client:load />
 </Layout>
