@@ -33,7 +33,6 @@ export default function SearchForm() {
 
   return (
     <div>
-      <h4>検索</h4>
       <p>Coming Soon...</p>
       <form onSubmit={handleSubmit}>
         <input

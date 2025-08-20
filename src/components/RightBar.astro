@@ -24,6 +24,9 @@ const { posts = [] } = Astro.props;
 <>
   <section class={styles.rightBar}>
     <section class={styles.barSec}>
+      <h4>
+        <a href="/search">検索</a>
+      </h4>
       <SearchForm client:load />
       <h4>
         <a href="/tags">タグから探す</a>
