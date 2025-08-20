@@ -25,7 +25,7 @@ export default function SearchForm() {
     if (query.trim()) {
       const encodedQuery = encodeURIComponent(query.trim());
       const encodedToken = encodeURIComponent(turnstileToken);
-      window.location.href = `/search?q=${encodedQuery}&token=${encodedToken}`;
+      window.location.href = `/search/?q=${encodedQuery}&token=${encodedToken}`;
     } else {
       alert("検索語を入力してください．");
     }
