@@ -1,0 +1,25 @@
+.Form {
+  display: flex;
+}
+
+.SearchButton {
+  width: 44px;
+  height: 40px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px liquid var(--foreground);
+  background: linear-gradient(135deg, rgba(255,166,0,0.305), rgba(255, 166, 0, 0.425));
+  box-shadow: 3px 2px 7px var(--foreground);
+}
+
+.searchBox {
+  height: auto;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px liquid var(--foreground);
+  background: linear-gradient(135deg, var(--background), rgba(255, 166, 0, 0.305));
+  box-shadow: 1px -2px 7px var(--foreground);
+}
