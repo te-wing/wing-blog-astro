@@ -4,13 +4,17 @@ import SearchForm from '../../components/SearchForm.tsx';
 import SearchResult from '../../components/SearchResult.svelte';
 
 const workerUrl = 'https://search.api.diaries.wing.osaka';
+
+const { url } = Astro.request;
+const params = new URL(url).searchParams;
+const searchQuery = params.get("q");
 ---
 
 <Layout>
-  <head>
-    <title>検索</title>
-  </head>
   <section>
+    <head>
+      <title>{searchQuery} - 検索</title>
+    </head>
     <h2>Search</h2>
     <SearchForm client:load />
     <SearchResult workerUrl={workerUrl} client:load />
