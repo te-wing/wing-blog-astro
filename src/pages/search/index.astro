@@ -10,7 +10,9 @@ const workerUrl = 'https://search.api.diaries.wing.osaka';
   <head>
     <title>検索</title>
   </head>
-  <h2>Search</h2>
-  <SearchForm client:load />
-  <SearchResult workerUrl={workerUrl} client:load />
+  <section>
+    <h2>Search</h2>
+    <SearchForm client:load />
+    <SearchResult workerUrl={workerUrl} client:load />
+  </section>
 </Layout>
