@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SearchForm from '../components/SearchForm.tsx';
+import SearchResult from '../components/SearchResult.svelte';
 ---
 
 <Layout>
   <h2>Search</h2>
   <SearchForm client:load />
+  <SearchResult client:load />
 </Layout>
