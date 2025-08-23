@@ -4,12 +4,21 @@
   import { onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth';
 
   let user: any = null;
+  let nickname: string = '';
 
   onMount(() => {
+    
+
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       user = authUser;
       if (!user) {
         window.location.href = '/login';
+      } else {
+        if (user.displayName) {
+          nickname = (user.displayName);
+        } else {
+          nickname = 'ユーザー名未設定';
+        }
       }
     });
     return () => unsubscribe();
@@ -38,7 +47,7 @@
 
 <div>
   {#if user}
-    <p>ようこそ、{user.email} さん！</p>
+    <p>ようこそ， {nickname} さん！</p>
     <button on:click={handleSignOut}>ログアウト</button>
     <h3>アカウントについて</h3>
     <h4>メールアドレス</h4>
@@ -54,6 +63,11 @@
     <h3>公開される情報</h3>
     <h4>ニックネーム</h4>
     <p>ニックネームとは，コメントを投稿する際に表示されるあなたの名前です．プライバシ保護のため，本名ではないニックネームを使用することをお勧めします．</p>
+    {#if user.displayName}
+      <p>あなたのニックネーム：{user.displayName}</p>
+    {:else}
+      <p>ニックネーム未設定です．</p>
+    {/if}
     <h4>投稿者ID</h4>
     <p>投稿者IDは，なりすまし防止のため各ユーザに割り当てられる，@から始まる一意の文字列です．こちらも任意の文字列を設定できますが，本名ではないものをご利用になることをお勧めします．</p>
   {:else}
