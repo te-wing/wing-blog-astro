@@ -8,7 +8,6 @@
 
   onMount(() => {
     
-
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       user = authUser;
       if (!user) {
