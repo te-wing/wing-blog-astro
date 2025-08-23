@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+  import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from 'firebase/auth';
   import { auth } from '../firebase/client';
 
   let email = '';
@@ -8,11 +8,14 @@
 
   const handleAuth = async (isLogin: boolean) => {
     try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
       // `auth`オブジェクトを使って認証処理を実行
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(user);
       }
       window.location.href = '/dash/loginComplete';
     } catch (error: any) {

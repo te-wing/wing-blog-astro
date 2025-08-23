@@ -28,6 +28,12 @@
   {#if user}
     <p>ようこそ、{user.email} さん！</p>
     <button on:click={handleSignOut}>ログアウト</button>
+    <h3>アカウントについて</h3>
+    {#if user.emailVerified}
+      <p>メールは認証済みです．</p>
+    {:else}
+      <p>メールが認証されていません．アカウントの全ての機能を有効にするには，登録したメールアドレスに届いたリンクをクリックしてください．</p>
+    {/if}
   {:else}
     <p>読み込み中...</p>
   {/if}
