@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { auth } from '../firebase/client';
   import { onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth';
+  import ChangeDisplayName from './ChangeDisplayName.svelte';
 
   let user: any = null;
   let nickname: string = '';
@@ -67,6 +68,7 @@
     {:else}
       <p>ニックネームが設定されていません．</p>
     {/if}
+    <ChangeDisplayName />
     <h4>投稿者ID</h4>
     <p>投稿者IDは，なりすまし防止のため各ユーザに割り当てられる，@から始まる一意の文字列です．こちらも任意の文字列を設定できますが，本名ではないものをご利用になることをお勧めします．</p>
   {:else}
