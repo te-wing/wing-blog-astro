@@ -9,10 +9,10 @@
   onMount(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       user = authUser;
-      if (user) {
+      if (user.displayName) {
         nickname = user.displayName;
       } else {
-        nickname = '未設定';
+        nickname = '';
       }
     });
     return () => unsubscribe();
@@ -24,8 +24,8 @@
 
 <div>
   <form>
-    <input type='text' placeholder='ニックネーム' bind:value='{nickname}' />
-    <button>変更</button>
+    <input type='text' placeholder='ニックネーム' bind:value={nickname} required/>
+    <button type='submit'>変更</button>
   </form>
 </div>
 
