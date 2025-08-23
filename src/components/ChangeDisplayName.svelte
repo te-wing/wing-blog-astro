@@ -20,10 +20,11 @@
     return () => unsubscribe();
   });
   
-  const handleAuth = async () => {
+  const handleNickname = async () => {
     if (user) {
       try {
         await updateProfile(user, {displayName: nickname});
+        location.reload();
       } catch (error: any) {
         errorMessage = error.message;
         alert(`エラー：${errorMessage}`);
@@ -36,7 +37,7 @@
 
 
 <div>
-  <form>
+  <form on:submit|preventDefault={() => handleNickname()}>
     <input type='text' placeholder='ニックネーム' bind:value={nickname} required/>
     {#if errorMessage}
       <p>{errorMessage}</p>
