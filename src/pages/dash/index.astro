@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Dash from '../../components/Dash.svelte';
+---
+
+<Layout>
+  <div>
+    <h2>Dashboard</h2>
+    <Dash client:only />
+  </div>
+</Layout>
