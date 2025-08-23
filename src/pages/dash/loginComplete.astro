@@ -1,5 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro'
+import Layout from '../../layouts/Layout.astro';
+import StartSetting from '../../components/StartSetting.svelte';
 ---
 
 <Layout>
@@ -7,6 +8,8 @@ import Layout from '../../layouts/Layout.astro'
     <h2>Log In Completed!</h2>
     <h3>ログインが完了しました．</h3>
     <a href="/dash/">ダッシュボードを見る</a>
+    <h3>おすすめのアクション</h3>
+    <StartSetting client:only />
     <h3>できること</h3>
     <p>ブログの各記事にコメントを投稿することができます．（削除できないかも！？注意してね．）</p>
   </div>
