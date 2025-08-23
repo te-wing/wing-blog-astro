@@ -11,8 +11,8 @@
       <label for="password">パスワード</label><br />
       <input placeholder="Passw0rd" type="password" required minlength="6" /><br /><br />
       <button type="submit">ログイン</button><br /><br />
-      <a href='/login/new'>新規登録</a>
     </form>
+    <a href='/login/new'>新規登録</a>
   </section>
 </div>
 
@@ -33,6 +33,6 @@
   }
 
   button, a {
-    
+
   }
 </style>
