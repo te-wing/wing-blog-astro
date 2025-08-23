@@ -1,7 +1,8 @@
 <script lang='ts'>
   import {onMount} from 'svelte';
   import {auth} from '../firebase/client.ts';
-  import {onAuthStateChanged} from 'firebase/auth';
+  import {getAuth, onAuthStateChanged, updateProfile} from 'firebase/auth';
+    import { useReducer } from 'react';
 
   let user: any = null;
   let nickname: string = '';
@@ -18,6 +19,16 @@
     return () => unsubscribe();
   });
   
+  const handleAuth = async () => {
+    if (user) {
+      try {
+        await updateProfile(user, {displayName: nickname});
+      } catch (error: any) {
+        errorMessage = error.message;
+        alert(`エラー：${errorMessage}`)
+      }
+    }
+  };
   
 </script>
 
