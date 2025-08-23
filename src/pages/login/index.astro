@@ -1,9 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import LoginForm from '../../components/LoginForm.svelte';
+import JavaScriptRequired from '../../components/JavaScriptRequired.astro';
 ---
 
 <Layout>
   <h2>Login</h2>
-  <LoginForm client:load />
+  <JavaScriptRequired client:load />
+  <LoginForm client:only />
 </Layout>

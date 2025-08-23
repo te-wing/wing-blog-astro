@@ -1,21 +1,43 @@
 <script lang="ts">
+  import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+  import { auth } from '../firebase/client';
 
+  let email = '';
+  let password = '';
+  let errorMessage = '';
+
+  const handleAuth = async (isLogin: boolean) => {
+    try {
+      // `auth`オブジェクトを使って認証処理を実行
+      if (isLogin) {
+        await signInWithEmailAndPassword(auth, email, password);
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+      }
+      window.location.href = '/dash/loginComplete';
+    } catch (error: any) {
+      errorMessage = error.message;
+      alert(`エラー: ${errorMessage}`);
+      console.error(error);
+    }
+  };
 </script>
 
 <div>
   <h3>準備中かもしれません．</h3>
   <section>
-    <form>
-      <label for="email">メール</label><br />
-      <input placeholder="user@wing.osaka" type="email" required /><br /><br />
-      <label for="password">パスワード</label><br />
-      <input placeholder="Passw0rd" type="password" required minlength="6" /><br /><br />
-      <button type="submit">ログイン</button><br /><br />
+    <form on:submit|preventDefault={() => handleAuth(true)}>
+      <label for="email">メールアドレス</label>
+      <input type="email" bind:value={email} required />
+      <label for="password">パスワード</label>
+      <input type="password" bind:value={password} required minlength="6" />
+      {#if errorMessage}
+        <p>{errorMessage}</p>
+      {/if}
+      <button type="submit">ログイン</button>
+      <button type="button" on:click={() => handleAuth(false)}>新規登録</button>
     </form>
   </section>
-  <div>
-    <a href='/login/new'>新規登録</a>
-  </div>
 </div>
 
 <style lang='scss'>
