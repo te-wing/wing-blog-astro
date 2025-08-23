@@ -18,7 +18,7 @@
   const handleEmailChange = async() => {
     if (user) {
       try {
-        await user.updateEmail(emailAddress);
+        await updateEmail(user, emailAddress);
         location.reload();
       } catch (error: any) {
         errorMessage = error.message;
