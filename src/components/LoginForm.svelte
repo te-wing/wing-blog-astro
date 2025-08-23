@@ -12,8 +12,10 @@
       <input placeholder="Passw0rd" type="password" required minlength="6" /><br /><br />
       <button type="submit">ログイン</button><br /><br />
     </form>
-    <a href='/login/new'>新規登録</a>
   </section>
+  <div>
+    <a href='/login/new'>新規登録</a>
+  </div>
 </div>
 
 <style lang='scss'>
@@ -31,8 +33,11 @@
   input {
     width: 100%;
   }
-
-  button, a {
-
+  div {
+    width: 100%;
+    a {
+      text-align: center;
+      width: 140px;
+    }
   }
 </style>
