@@ -3,6 +3,7 @@
   import { auth } from '../firebase/client';
   import { onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth';
   import ChangeDisplayName from './ChangeDisplayName.svelte';
+  import ChangeEmail from './ChangeEmail.svelte';
 
   let user: any = null;
   let nickname: string = '';
@@ -51,6 +52,7 @@
     <button on:click={handleSignOut}>ログアウト</button>
     <h3>アカウントについて</h3>
     <h4>メールアドレス</h4>
+    <ChangeEmail />
     {#if user.emailVerified}
       <p>おめでとうございやす！ご利用のメール<span class='codeFont'>{user.email}</span>は認証済みです．</p>
     {:else}
