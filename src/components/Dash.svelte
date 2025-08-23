@@ -28,10 +28,23 @@
     });
     return () => unsubscribe();
   });
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("ログアウトに失敗しました", error);
+    }
+  };
 </script>
 
 <div>
-
+  {#if user}
+    <p>ようこそ、{user.email} さん！</p>
+    <button on:click={handleSignOut}>ログアウト</button>
+  {:else}
+    <p>読み込み中...</p>
+  {/if}
 </div>
 
 <style lang="scss">
