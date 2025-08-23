@@ -6,17 +6,9 @@
   let password = '';
   let errorMessage = '';
 
-  const handleAuth = async (isLogin: boolean) => {
+  const handleAuth = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      // `auth`オブジェクトを使って認証処理を実行
-      if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        await createUserWithEmailAndPassword(auth, email, password);
-        await sendEmailVerification(user);
-      }
+      await signInWithEmailAndPassword(auth, email, password);
       window.location.href = '/dash/loginComplete';
     } catch (error: any) {
       errorMessage = error.message;
@@ -29,7 +21,7 @@
 <div>
   <h3>準備中かもしれません．</h3>
   <section>
-    <form on:submit|preventDefault={() => handleAuth(true)}>
+    <form on:submit|preventDefault={() => handleAuth()}>
       <label for="email">メールアドレス</label>
       <input type="email" bind:value={email} required />
       <label for="password">パスワード</label>
@@ -38,7 +30,6 @@
         <p>{errorMessage}</p>
       {/if}
       <button type="submit">ログイン</button>
-      <button type="button" on:click={() => handleAuth(false)}>新規登録</button>
     </form>
   </section>
 </div>

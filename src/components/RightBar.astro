@@ -2,6 +2,7 @@
 import styles from './rightBar.module.scss';
 import { getCollection } from 'astro:content';
 import './rightBar.scss';
+import ProfileWidget from './ProfileWidget.svelte';
 
 import SearchForm from './SearchForm.tsx';
 import FormBox from './FormBox.tsx';
@@ -24,6 +25,7 @@ const { posts = [] } = Astro.props;
 <>
   <section class={styles.rightBar}>
     <section class={styles.barSec}>
+      <ProfileWidget client:only />
       <h4>
         <a href="/search">検索</a>
       </h4>
