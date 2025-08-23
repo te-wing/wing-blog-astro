@@ -8,6 +8,11 @@
   src: url('/fonts/ZenMaru.ttf');
 }
 
+@font-face {
+  font-family: FiraCode;
+  src: url('/fonts/FiraCode.ttf');
+}
+
 :root {
   --background: #8cd7ff;
   --background-transparent: rgb(140, 215, 255, 62%);

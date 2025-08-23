@@ -28,11 +28,13 @@
     display: block;
     width: 100%;
     max-width: 400px;
+
+    input {
+      font-family: FiraCode;
+      width: 100%;
+    }
   }
 
-  input {
-    width: 100%;
-  }
   div {
     width: 100%;
     a {
