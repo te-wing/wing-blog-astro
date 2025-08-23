@@ -1,8 +1,7 @@
 <script lang='ts'>
   import {onMount} from 'svelte';
   import {auth} from '../firebase/client.ts';
-  import {getAuth, onAuthStateChanged, updateProfile} from 'firebase/auth';
-    import { useReducer } from 'react';
+  import {onAuthStateChanged, updateProfile} from 'firebase/auth';
 
   let user: any = null;
   let nickname: string = '';
