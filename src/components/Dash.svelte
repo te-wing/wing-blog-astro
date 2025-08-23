@@ -17,7 +17,7 @@
         if (user.displayName) {
           nickname = (user.displayName);
         } else {
-          nickname = 'ユーザー名未設定';
+          nickname = 'ニックネーム未設定';
         }
       }
     });
@@ -66,7 +66,7 @@
     {#if user.displayName}
       <p>あなたのニックネーム：{user.displayName}</p>
     {:else}
-      <p>ニックネーム未設定です．</p>
+      <p>ニックネームが設定されていません．</p>
     {/if}
     <h4>投稿者ID</h4>
     <p>投稿者IDは，なりすまし防止のため各ユーザに割り当てられる，@から始まる一意の文字列です．こちらも任意の文字列を設定できますが，本名ではないものをご利用になることをお勧めします．</p>
